@@ -1,0 +1,67 @@
+﻿<Window x:Class="CZMRenamer.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:CZMRenamer"
+    mc:Ignorable="d" Title="收文件小工具" Height="550" Width="750" Icon="icon.png"
+    Closing="Window_Closing">
+  <Window.Resources>
+    <Style x:Key="concatLabel" TargetType="Label">
+      <Setter Property="Margin" Value="0,0,0,10" />
+      <Setter Property="Height" Value="30" />
+      <Setter Property="HorizontalContentAlignment" Value="Right" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+    <Style x:Key="concatTextBox" TargetType="TextBox">
+      <Setter Property="Margin" Value="0,0,0,10" />
+      <Setter Property="Height" Value="30" />
+      <Setter Property="TextWrapping" Value="NoWrap" />
+      <Setter Property="HorizontalContentAlignment" Value="Left" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+  </Window.Resources>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="110" />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="120" />
+      <ColumnDefinition />
+    </Grid.ColumnDefinitions>
+    <Button x:Name="load" Content="选择位置" HorizontalAlignment="Stretch" Margin="15" VerticalAlignment="Top" Height="30"
+        Click="Load_Click" />
+    <Button x:Name="help" Content="帮助" HorizontalAlignment="Stretch" Margin="15" VerticalAlignment="Bottom" Height="30"
+        Click="Help_Click" />
+    <StackPanel Margin="5,0,0,15" Grid.Row="1" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top">
+      <Label Style="{DynamicResource concatLabel}" Content="前缀" />
+      <Label Style="{DynamicResource concatLabel}" Content="分隔符" />
+      <Label Style="{DynamicResource concatLabel}" Content="后缀" />
+    </StackPanel>
+    <StackPanel Margin="60,0,15,15" Grid.Row="1" VerticalAlignment="Top">
+      <TextBox x:Name="prefix" TextChanged="Prefix_TextChanged" Style="{DynamicResource concatTextBox}" Text="" />
+      <TextBox x:Name="separator" TextChanged="Separator_TextChanged" Style="{DynamicResource concatTextBox}" Text="" />
+      <TextBox x:Name="suffix" TextChanged="Suffix_TextChanged" Style="{DynamicResource concatTextBox}" Text="" />
+    </StackPanel>
+    <ScrollViewer Grid.Column="1" Grid.RowSpan="2">
+      <ItemsControl x:Name="itemsControl" Margin="0" Padding="5" Background="#9999">
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <WrapPanel Orientation="Horizontal" />
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Border Margin="2">
+              <Label Content="{Binding Name}" Padding="20,10" Foreground="Black" Background="{Binding ShownColor}"
+                  AllowDrop="True" DragEnter="Label_DragEnter" DragLeave="Label_DragLeave" Drop="Label_Drop"
+                  BorderThickness="2" BorderBrush="Transparent" />
+            </Border>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </ScrollViewer>
+    <Label x:Name="GithubPage" Content="Github Page" Margin="0,0,0,15" Grid.Row="1"
+        VerticalAlignment="Bottom"
+        HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="30" Cursor="Hand"
+        Foreground="#FF3E24C3" Panel.ZIndex="1" Padding="0" MouseDown="GithubPage_MouseDown"/>
+  </Grid>
+</Window>
