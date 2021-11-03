@@ -1,10 +1,12 @@
 # 收文件小工具
 
-![README_img](README_img.png)
+命名格式不整齐？不知道有谁没交？一个应用解决你的收文件、收作业烦恼！
 
 - 拖动文件 快速批量重命名
-- 命名格式（前后缀）
+- 指定命名格式（前后缀）
 - 实时查看收齐进度
+
+![README_img](README_img.png)
 
 ![README_img_2](README_img_2.png)
 
